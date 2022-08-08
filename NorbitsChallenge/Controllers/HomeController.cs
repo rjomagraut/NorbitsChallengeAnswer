@@ -27,15 +27,9 @@ namespace NorbitsChallenge.Controllers
             return View(model);
         }
 
-        public IActionResult Workshop()
-        {
-            ViewData["Message"] = "All Vehicles";
-            var model = GetCompanyModel();
-            return View(model);
-        }
 
         [HttpPost]
-        public JsonResult Workshop(int companyId, string licensePlate)
+        public JsonResult Index(int companyId, string licensePlate)
         {
             var tireCount = new CarDb(_config).GetTireCount(companyId, licensePlate);
 

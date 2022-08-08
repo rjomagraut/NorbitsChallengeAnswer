@@ -10,6 +10,6 @@ namespace NorbitsChallenge.Bll
         public int Id { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
-        public int CompanyId { get; set; }
+        public int CompanyId { get; set; } //Her burdet det vore eit ?//
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using NorbitsChallenge.Data;
 
 namespace NorbitsChallenge
 {
@@ -37,6 +39,9 @@ namespace NorbitsChallenge
 
             SetupDependencyInjection(services);
             services.AddControllersWithViews();
+
+            services.AddDbContext<NorbitsChallengeContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("NorbitsChallengeContext")));
         }
 
 
@@ -51,6 +56,7 @@ namespace NorbitsChallenge
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Vehicles/Error");
                 app.UseHsts();
             }
 
@@ -64,6 +70,12 @@ namespace NorbitsChallenge
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Vehicles}/{action=Index}/{id?}");
             });
         }
 

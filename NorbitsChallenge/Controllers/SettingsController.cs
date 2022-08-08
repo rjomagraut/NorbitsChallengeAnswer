@@ -18,7 +18,7 @@ namespace NorbitsChallenge.Controllers
             _config = config;
         }
 
-        public IActionResult Workshop(int companyId)
+        public IActionResult Index(int companyId)
         {
             var model = new SettingsViewModel();
             var settings = new SettingsDb(_config).GetSettings(companyId);
